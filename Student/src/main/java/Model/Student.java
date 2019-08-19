@@ -7,38 +7,62 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="student")
+@Table(name = "student")
 public class Student {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int student_id;
-	private String student_name;
-	private String student_email;
-	private String student_branch;
-	public int getStudent_id() {
-		return student_id;
-	}
-	public void setStudent_id(int student_id) {
-		this.student_id = student_id;
-	}
-	public String getStudent_name() {
-		return student_name;
-	}
-	public void setStudent_name(String student_name) {
-		this.student_name = student_name;
-	}
-	public String getStudent_email() {
-		return student_email;
-	}
-	public void setStudent_email(String student_email) {
-		this.student_email = student_email;
-	}
-	public String getStudent_branch() {
-		return student_branch;
-	}
-	public void setStudent_branch(String student_branch) {
-		this.student_branch = student_branch;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int studentId;
+    private String studentName;
+    private String groupNumber;
+    private String faculty;
+    private String scholarship;
+    private String dateOfEnrollment;
 
-	
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public String getGroupNumber() {
+        return groupNumber;
+    }
+
+    public void setGroupNumber(String groupNumber) {
+        this.groupNumber = groupNumber;
+    }
+
+    public String getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(String faculty) {
+        this.faculty = faculty;
+    }
+
+    public String getScholarship() {
+        return scholarship;
+    }
+
+    public void setScholarship(String scholarship) {
+        this.scholarship = scholarship;
+    }
+
+    public String getDateOfEnrollment() {
+        return dateOfEnrollment;
+    }
+
+    public void setDateOfEnrollment(String dateOfEnrollment) {
+        this.dateOfEnrollment = dateOfEnrollment;
+    }
 }

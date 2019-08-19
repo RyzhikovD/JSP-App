@@ -1,60 +1,81 @@
 <h3>Create Student</h3>
 <div class="row">
   <div class="col-sm-4"></div>
-  <div class="col-sm-4" >
+  <div class="col-sm-4">
     <div [hidden]="submitted" style="width: 400px;">
-      <form [formGroup]="studentsaveform" #savestudent (ngSubmit)="saveStudent(saveStudent)">
-          <div class="form-group">
-              <label for="name">Student Name</label>
-              <input type="text" class="form-control"  formControlName="student_name" data-toggle="tooltip" 
-                 data-placement="right" title="Enter Student Name" >
-              <div class="alert alert-danger" *ngIf = "(StudentName.touched) && (StudentName.invalid)" 
-                style="margin-top: 5px;">
-                  <span *ngIf="StudentName.errors.required">Student Name is Required</span>
-                    <span *ngIf = "StudentName.errors.minlength"> 
-                        MinLength Error 
-                    </span>                   
-                </div>
+      <form [formGroup]="studentSaveForm" #savestudent (ngSubmit)="saveStudent(saveStudent)">
+        <div class="form-group">
+          <label for="name">Student Name</label>
+          <input type="text" class="form-control" formControlName="studentName" data-toggle="tooltip"
+                 data-placement="right" title="Enter Student Name">
+          <div class="alert alert-danger" *ngIf="(StudentName.touched) && (StudentName.invalid)"
+               style="margin-top: 5px;">
+            <span *ngIf="StudentName.errors.required">Student Name is Required</span>
+            <span *ngIf="StudentName.errors.minlength">
+                        MinLength Error
+                    </span>
           </div>
-  
-          <div class="form-group">
-              <label for="name">Student Email</label>
-              <input type="text" class="form-control" formControlName="student_email" 
-                data-toggle="tooltip" data-placement="right" title="Enter Student Email">
-                <div class="alert alert-danger" *ngIf = "(StudentEmail.touched) && (StudentEmail.invalid)" 
-                style="margin-top: 5px;">
-                  <span *ngIf="StudentEmail.errors.required">Student Email is Required</span>
-                    <span *ngIf = "StudentEmail.errors.email"> 
-                        Invalid Email Format 
-                    </span>                   
-                </div>
+        </div>
+
+        <div class="form-group">
+          <label for="name">Group Number</label>
+          <input type="text" class="form-control" formControlName="groupNumber"
+                 data-toggle="tooltip" data-placement="right" title="Enter Group Number">
+          <div class="alert alert-danger" *ngIf="(GroupNumber.touched) && (GroupNumber.invalid)"
+               style="margin-top: 5px;">
+            <span *ngIf="GroupNumber.errors.required">Group Number is Required</span>
+            <span *ngIf="GroupNumber.errors.minlength">
+                        MinLength Error
+                    </span>
           </div>
-  
-          <div class="form-group">
-              <label for="branch">Student Branch</label>
-                <select class="form-control" formControlName="student_branch" data-toggle="tooltip" 
-                      data-placement="right" title="Select Student Branch">
-                    <option value="null">--Select Branch--</option>
-                  <option value="B-Tech">B-Tech</option>
-                  <option value="BCA">BCA</option>
-                  <option value="MCA">MCA</option>
-                  <option value="M-Tech">M-Tech</option>
-                </select>
+        </div>
+
+        <div class="form-group">
+          <label for="branch">Faculty</label>
+          <select class="form-control" formControlName="faculty" data-toggle="tooltip"
+                  data-placement="right" title="Select Faculty">
+            <option value="null">--Select Faculty--</option>
+            <option value="INPE">Institute of Nuclear Physics and Engineering</option>
+            <option value="IEPB">Institute of Engineering Physics for Biomedicine</option>
+            <option value="ILPT">Institute for Laser and Plasma Technologies</option>
+            <option value="ICIS">Institute of Cyber Intelligence Systems</option>
+            <option value="INESP">Institute for Nanoengineering in Electronics, Spintronics and Photonics</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="branch">Scholarship</label>
+          <select class="form-control" formControlName="scholarship" data-toggle="tooltip"
+                  data-placement="right" title="Select Scholarship">
+            <option value="null">--Select Scholarship--</option>
+            <option value="usual">Usual</option>
+            <option value="increased">Increased</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="name">Date Of Enrollment</label>
+          <input type="text" class="form-control" formControlName="dateOfEnrollment"
+                 data-toggle="tooltip" data-placement="right" title="Enter Date Of Enrollment">
+          <div class="alert alert-danger" *ngIf="(DateOfEnrollment.touched) && (DateOfEnrollment.invalid)"
+               style="margin-top: 5px;">
+            <span *ngIf="DateOfEnrollment.errors.required">Date Of Enrollment is Required</span>
           </div>
-  
-          <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit</button>
       </form>
-  </div>
+    </div>
   </div>
   <div class="col-sm-4"></div>
 </div>
 <div class="row">
   <div class="col-sm-4"></div>
   <div class="col-sm-4">
-      <div [hidden]="!submitted">
-         <h4>Student Added SuccessFully!</h4>
-         <button (click)="addStudentForm()" class='btn btn-primary'>Add More Student</button>
-      </div>      
+    <div [hidden]="!submitted">
+      <h4>Student Added SuccessFully!</h4>
+      <button (click)="addStudentForm()" class='btn btn-primary'>Add More Student</button>
+    </div>
   </div>
   <div class="col-sm-4"></div>
 </div>

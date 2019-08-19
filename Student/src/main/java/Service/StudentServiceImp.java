@@ -6,39 +6,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import DAO.Student_DAO;
+import DAO.StudentDAO;
 import Model.Student;
 
 @Service
 @Transactional
-public class Student_Service_Imp implements Student_Service {
+public class StudentServiceImp implements StudentService {
  
 	@Autowired
-	private Student_DAO studentdao;
+	private StudentDAO studentDao;
 	
 	@Override
 	public boolean saveStudent(Student student) {
-		return studentdao.saveStudent(student);
+		return studentDao.saveStudent(student);
 	}
 
 	@Override
 	public List<Student> getStudents() {
-		return studentdao.getStudents();
+		return studentDao.getStudents();
 	}
 
 	@Override
 	public boolean deleteStudent(Student student) {
-		return studentdao.deleteStudent(student);
+		return studentDao.deleteStudent(student);
 	}
 
 	@Override
 	public List<Student> getStudentByID(Student student) {
-		return studentdao.getStudentByID(student);
+		return studentDao.getStudentByID(student);
 	}
 
 	@Override
 	public boolean updateStudent(Student student) {
-		return studentdao.updateStudent(student);
+		return studentDao.updateStudent(student);
 	}
 
 }

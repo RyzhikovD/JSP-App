@@ -12,23 +12,31 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class StudentListComponent implements OnInit {
 
-  constructor(private studentservice: StudentService) {
+  constructor(private studentService: StudentService) {
   }
 
   get StudentName() {
-    return this.studentupdateform.get('student_name');
+    return this.studentUpdateForm.get('studentName');
   }
 
-  get StudentEmail() {
-    return this.studentupdateform.get('student_email');
+  get GroupNumber() {
+    return this.studentUpdateForm.get('groupNumber');
   }
 
-  get StudentBranch() {
-    return this.studentupdateform.get('student_branch');
+  get Faculty() {
+    return this.studentUpdateForm.get('faculty');
+  }
+
+  get Scholarship() {
+    return this.studentUpdateForm.get('scholarship');
+  }
+
+  get DateOfEnrollment() {
+    return this.studentUpdateForm.get('dateOfEnrollment');
   }
 
   get StudentId() {
-    return this.studentupdateform.get('student_id');
+    return this.studentUpdateForm.get('studentId');
   }
 
   studentsArray: any[] = [];
@@ -39,39 +47,40 @@ export class StudentListComponent implements OnInit {
   students: Observable<Student[]>;
   student: Student = new Student();
   deleteMessage = false;
-  studentlist: any;
-  isupdated = false;
+  studentList: any;
+  isUpdated = false;
 
-  studentupdateform = new FormGroup({
-    student_id: new FormControl(),
-    student_name: new FormControl(),
-    student_email: new FormControl(),
-    student_branch: new FormControl()
+  studentUpdateForm = new FormGroup({
+    studentId: new FormControl(),
+    studentName: new FormControl(),
+    groupNumber: new FormControl(),
+    faculty: new FormControl(),
+    scholarship: new FormControl(),
+    dateOfEnrollment: new FormControl()
   });
 
 
   ngOnInit() {
-    this.isupdated = false;
+    this.isUpdated = false;
     this.dtOptions = {
       pageLength: 6,
       stateSave: true,
       lengthMenu: [[6, 16, 20, -1], [6, 16, 20, 'All']],
       processing: true
     };
-    this.studentservice.getStudentList().subscribe(data => {
+    this.studentService.getStudentList().subscribe(data => {
       this.students = data;
       this.dtTrigger.next();
     });
   }
 
   deleteStudent(id: number) {
-    this.studentservice.deleteStudent(id)
+    this.studentService.deleteStudent(id)
       .subscribe(
         data => {
           console.log(data);
           this.deleteMessage = true;
-          // tslint:disable-next-line:no-shadowed-variable
-          this.studentservice.getStudentList().subscribe(data => {
+          this.studentService.getStudentList().subscribe(data => {
             this.students = data;
           });
         },
@@ -80,35 +89,36 @@ export class StudentListComponent implements OnInit {
 
 
   updateStudent(id: number) {
-    this.studentservice.getStudent(id)
+    this.studentService.getStudent(id)
       .subscribe(
         data => {
-          this.studentlist = data;
+          this.studentList = data;
         },
         error => console.log(error));
   }
 
-  updateStu(updstu) {
+  updateStu(updStu) {
     this.student = new Student();
-    this.student.student_id = this.StudentId.value;
-    this.student.student_name = this.StudentName.value;
-    this.student.student_email = this.StudentEmail.value;
-    this.student.student_branch = this.StudentBranch.value;
-    console.log(this.StudentBranch.value);
+    this.student.studentId = this.StudentId.value;
+    this.student.studentName = this.StudentName.value;
+    this.student.groupNumber = this.GroupNumber.value;
+    this.student.faculty = this.Faculty.value;
+    this.student.scholarship = this.Scholarship.value;
+    this.student.dateOfEnrollment = this.DateOfEnrollment.value;
+    console.log(this.Faculty.value);
 
 
-    this.studentservice.updateStudent(this.student.student_id, this.student).subscribe(
+    this.studentService.updateStudent(this.student.studentId, this.student).subscribe(
       data => {
-        this.isupdated = true;
-        // tslint:disable-next-line:no-shadowed-variable
-        this.studentservice.getStudentList().subscribe(data => {
+        this.isUpdated = true;
+        this.studentService.getStudentList().subscribe(data => {
           this.students = data;
         });
       },
       error => console.log(error));
   }
 
-  changeisUpdate() {
-    this.isupdated = false;
+  changeIsUpdate() {
+    this.isUpdated = false;
   }
 }

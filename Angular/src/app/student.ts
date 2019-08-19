@@ -1,6 +1,8 @@
 export class Student {
-  student_id: number;
-  student_name: String;
-  student_email: String;
-  student_branch = String;
+  studentId: number;
+  studentName: String;
+  groupNumber: String; // email
+  faculty = String;   // branch
+  scholarship = String; // new
+  dateOfEnrollment: String; // new
 }
