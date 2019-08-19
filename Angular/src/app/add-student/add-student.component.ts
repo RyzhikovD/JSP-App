@@ -38,10 +38,10 @@ export class AddStudentComponent implements OnInit {
 
   studentSaveForm = new FormGroup({
     studentName: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    groupNumber: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    faculty: new FormControl('', [Validators.required]),
-    scholarship: new FormControl('', [Validators.required]),
-    dateOfEnrollment: new FormControl('', [Validators.required]),
+    groupNumber: new FormControl('', [Validators.required]),
+    faculty: new FormControl(),
+    scholarship: new FormControl(),
+    dateOfEnrollment: new FormControl(),
   });
 
   ngOnInit() {

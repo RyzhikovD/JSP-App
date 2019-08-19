@@ -5,33 +5,28 @@
     <div [hidden]="submitted" style="width: 400px;">
       <form [formGroup]="studentSaveForm" #savestudent (ngSubmit)="saveStudent(saveStudent)">
         <div class="form-group">
-          <label for="name">Student Name</label>
+          <label for="studentName"><div style="color: red; float: left">*</div>Student Name</label>
           <input type="text" class="form-control" formControlName="studentName" data-toggle="tooltip"
                  data-placement="right" title="Enter Student Name">
           <div class="alert alert-danger" *ngIf="(StudentName.touched) && (StudentName.invalid)"
                style="margin-top: 5px;">
-            <span *ngIf="StudentName.errors.required">Student Name is Required</span>
-            <span *ngIf="StudentName.errors.minlength">
-                        MinLength Error
-                    </span>
+            <span *ngIf="StudentName.errors.required">Student Name is required</span>
+            <span *ngIf="StudentName.errors.minlength">Minimal length is 3 symbols</span>
           </div>
         </div>
 
         <div class="form-group">
-          <label for="name">Group Number</label>
+          <label for="groupNumber"><div style="color: red; float: left">*</div>Group Number</label>
           <input type="text" class="form-control" formControlName="groupNumber"
                  data-toggle="tooltip" data-placement="right" title="Enter Group Number">
           <div class="alert alert-danger" *ngIf="(GroupNumber.touched) && (GroupNumber.invalid)"
                style="margin-top: 5px;">
-            <span *ngIf="GroupNumber.errors.required">Group Number is Required</span>
-            <span *ngIf="GroupNumber.errors.minlength">
-                        MinLength Error
-                    </span>
+            <span *ngIf="GroupNumber.errors.required">Group Number is required</span>
           </div>
         </div>
 
         <div class="form-group">
-          <label for="branch">Faculty</label>
+          <label for="faculty">Faculty</label>
           <select class="form-control" formControlName="faculty" data-toggle="tooltip"
                   data-placement="right" title="Select Faculty">
             <option value="null">--Select Faculty--</option>
@@ -44,7 +39,7 @@
         </div>
 
         <div class="form-group">
-          <label for="branch">Scholarship</label>
+          <label for="scholarship">Scholarship</label>
           <select class="form-control" formControlName="scholarship" data-toggle="tooltip"
                   data-placement="right" title="Select Scholarship">
             <option value="null">--Select Scholarship--</option>
@@ -54,16 +49,12 @@
         </div>
 
         <div class="form-group">
-          <label for="name">Date Of Enrollment</label>
+          <label for="dateOfEnrollment">Date Of Enrollment</label>
           <input type="text" class="form-control" formControlName="dateOfEnrollment"
                  data-toggle="tooltip" data-placement="right" title="Enter Date Of Enrollment">
-          <div class="alert alert-danger" *ngIf="(DateOfEnrollment.touched) && (DateOfEnrollment.invalid)"
-               style="margin-top: 5px;">
-            <span *ngIf="DateOfEnrollment.errors.required">Date Of Enrollment is Required</span>
-          </div>
         </div>
-
-        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="submit" class="btn btn-success"
+                [disabled]="studentSaveForm.pristine || studentSaveForm.invalid">Submit</button>
       </form>
     </div>
   </div>
