@@ -7,7 +7,7 @@ Angular:
 2. `npm install angular-datatables --save`
 3. `ng serve`
 
-Database: create empty MySQL database "university'.<br/>Hibernate will create tables automatically.
+Database: create empty MySQL database "university'.<br/>See properties: Student/src/main/resources/application.properties.<br/>Hibernate will create tables automatically.
 
 Server (in "Student directory"): `mvn spring-boot:run`
 
