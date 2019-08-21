@@ -52,8 +52,8 @@ export class StudentListComponent implements OnInit {
 
   studentUpdateForm = new FormGroup({
     studentId: new FormControl(),
-    studentName: new FormControl(),
-    groupNumber: new FormControl(),
+    studentName: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    groupNumber: new FormControl('', [Validators.required]),
     faculty: new FormControl(),
     scholarship: new FormControl(),
     dateOfEnrollment: new FormControl()
