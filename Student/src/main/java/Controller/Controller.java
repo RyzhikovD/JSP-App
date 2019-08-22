@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import Model.Student;
+import Model.Group;
 import Service.StudentService;
+import Service.GroupService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -22,11 +24,11 @@ public class Controller {
 
     @Autowired
     private StudentService studentService;
+    private GroupService groupService;
 
     @PostMapping("save-student")
     public boolean saveStudent(@RequestBody Student student) {
         return studentService.saveStudent(student);
-
     }
 
     @GetMapping("students-list")
@@ -34,6 +36,10 @@ public class Controller {
         return studentService.getStudents();
     }
 
+//    @GetMapping("group-list")
+//    public List<Group> allGroups() {
+//        return groupService.getGroups();
+//    }
 
     @DeleteMapping("delete-student/{studentId}")
     public boolean deleteStudent(@PathVariable("studentId") int studentId, Student student) {
@@ -45,8 +51,13 @@ public class Controller {
     public List<Student> allStudentsByID(@PathVariable("studentId") int studentId, Student student) {
         student.setStudentId(studentId);
         return studentService.getStudentByID(student);
-
     }
+
+//    @GetMapping("group/{groupId}")
+//    public List<Group> allGroupsByID(@PathVariable("groupId") int groupId, Group group) {
+//        group.setGroupId(groupId);
+//        return groupService.getGroupByID(group);
+//    }
 
     @PostMapping("update-student/{studentId}")
     public boolean updateStudent(@RequestBody Student student, @PathVariable("studentId") int studentId) {

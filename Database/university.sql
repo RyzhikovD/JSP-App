@@ -3,29 +3,29 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-DROP TABLE IF EXISTS `group`;
-DROP TABLE IF EXISTS `students`;
+DROP TABLE IF EXISTS `grouptable`;
+DROP TABLE IF EXISTS `student`;
 
-CREATE TABLE IF NOT EXISTS `students` (
+CREATE TABLE IF NOT EXISTS `student` (
   `studentId` int(11) NOT NULL AUTO_INCREMENT,
-  `groupId` int(2) NOT NULL,
+  `groupId` int(11) NOT NULL,
   `studentName` varchar(255) DEFAULT NULL,
   `scholarship` varchar(255) DEFAULT NULL,
   `dateOfEnrollment` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`studentId`),
-  FOREIGN KEY (`groupId`) REFERENCES `group`(`groupId`)
+  FOREIGN KEY (`groupId`) REFERENCES `grouptable`(`groupId`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 COMMIT;
 
-CREATE TABLE IF NOT EXISTS `group` (
-  `groupId` int(2) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `grouptable` (
+  `groupId` int(11) NOT NULL AUTO_INCREMENT,
   `faculty` varchar(255) DEFAULT NULL,
   `groupNumber` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`groupId`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 COMMIT;
 
-INSERT INTO `group` (`groupId`, `faculty`, `groupNumber`) VALUES
+INSERT INTO `grouptable` (`groupId`, `faculty`, `groupNumber`) VALUES
 (1, 'INPE', 'B17-101'),
 (2, 'INPE', 'B18-101'),
 (3, 'IEPB', 'B17-201'),
@@ -39,7 +39,7 @@ INSERT INTO `group` (`groupId`, `faculty`, `groupNumber`) VALUES
 (11, 'INESP', 'B18-403');
 COMMIT;
 
-INSERT INTO `students` (`studentId`, `groupId`, `studentName`, `scholarship`, `dateOfEnrollment`) VALUES
+INSERT INTO `student` (`studentId`, `groupId`, `studentName`, `scholarship`, `dateOfEnrollment`) VALUES
 (1, 1, 'Alex', 'usual', '01.09.2016'),
 (2, 2, 'Dolly', 'usual', '01.09.2016'),
 (3, 3, 'Rick', 'increased', '01.09.2017');

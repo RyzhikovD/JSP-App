@@ -1,20 +1,32 @@
 package Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "students")
+@Table(name = "student")
+//@SecondaryTable(name="groups", pkJoinColumns = @PrimaryKeyJoinColumn(name="groupId"))
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "studentId")
     private int studentId;
     private String studentName;
-    private String groupNumber;
-    private String faculty;
+//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Group.class)
+//    @JoinTable(name = "groups", joinColumns = { @JoinColumn(name = "groupId") }, inverseJoinColumns = { @JoinColumn(name = "groupId") })
+
+//    @JoinColumn(name="groupId",referencedColumnName="groupId", insertable=false, updatable=false)
+//    @Column(name="groupId", table="groups")
+//    private int groupId;
+
+//    @JoinColumn(name="groupId")
+//    @JoinTable(name = "connection", joinColumns = @JoinColumn(name = "groupId"), inverseJoinColumns = @JoinColumn(name = "studentId"))
+//    private int groupId;
+
+//    @ManyToOne()
+//    @JoinColumn(name = "groupId")
+//    private Group group;
+    private int groupId;
+
     private String scholarship;
     private String dateOfEnrollment;
 
@@ -34,21 +46,21 @@ public class Student {
         this.studentName = studentName;
     }
 
-    public String getGroupNumber() {
-        return groupNumber;
-    }
+//    public String getGroupNumber() {
+//        return groupId.getGroupNumber();
+//    }
+//
+//    public void setGroupNumber(String groupNumber) {
+//        this.groupId.setGroupNumber(groupNumber);
+//    }
 
-    public void setGroupNumber(String groupNumber) {
-        this.groupNumber = groupNumber;
-    }
-
-    public String getFaculty() {
-        return faculty;
-    }
-
-    public void setFaculty(String faculty) {
-        this.faculty = faculty;
-    }
+//    public String getFaculty() {
+//        return groupId.getFaculty();
+//    }
+//
+//    public void setFaculty(String faculty) {
+//        this.groupId.setFaculty(faculty);
+//    }
 
     public String getScholarship() {
         return scholarship;
@@ -64,5 +76,13 @@ public class Student {
 
     public void setDateOfEnrollment(String dateOfEnrollment) {
         this.dateOfEnrollment = dateOfEnrollment;
+    }
+
+    public int getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(int groupId) {
+        this.groupId = groupId;
     }
 }

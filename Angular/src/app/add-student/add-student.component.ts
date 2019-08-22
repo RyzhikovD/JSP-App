@@ -17,13 +17,13 @@ export class AddStudentComponent implements OnInit {
     return this.studentSaveForm.get('studentName');
   }
 
-  get GroupNumber() {
-    return this.studentSaveForm.get('groupNumber');
-  }
+  // get GroupNumber() {
+  //   return this.studentSaveForm.get('groupNumber');
+  // }
 
-  get Faculty() {
-    return this.studentSaveForm.get('faculty');
-  }
+  // get Faculty() {
+  //   return this.studentSaveForm.get('faculty');
+  // }
 
   get Scholarship() {
     return this.studentSaveForm.get('scholarship');
@@ -33,13 +33,18 @@ export class AddStudentComponent implements OnInit {
     return this.studentSaveForm.get('dateOfEnrollment');
   }
 
+  get GroupId() {
+    return this.studentSaveForm.get('groupId');
+  }
+
   student: Student = new Student();
   submitted = false;
 
   studentSaveForm = new FormGroup({
     studentName: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    groupNumber: new FormControl('', [Validators.required]),
-    faculty: new FormControl(),
+    // groupNumber: new FormControl('', [Validators.required]),
+    // faculty: new FormControl(),
+    groupId: new FormControl('', [Validators.required]),
     scholarship: new FormControl(),
     dateOfEnrollment: new FormControl(),
   });
@@ -51,8 +56,9 @@ export class AddStudentComponent implements OnInit {
   saveStudent(saveStudent) {
     this.student = new Student();
     this.student.studentName = this.StudentName.value;
-    this.student.groupNumber = this.GroupNumber.value;
-    this.student.faculty = this.Faculty.value;
+    // this.student.groupNumber = this.GroupNumber.value;
+    // this.student.faculty = this.Faculty.value;
+    this.student.groupId = this.GroupId.value;
     this.student.scholarship = this.Scholarship.value;
     this.student.dateOfEnrollment = this.DateOfEnrollment.value;
     this.submitted = true;

@@ -15,34 +15,55 @@
           </div>
         </div>
 
+<!--        <div class="form-group">-->
+<!--          <label for="groupNumber"><div style="color: red; float: left">*</div>Group Number</label>-->
+<!--          <input type="text" class="form-control" formControlName="groupNumber"-->
+<!--                 data-toggle="tooltip" data-placement="right" title="Enter Group Number">-->
+<!--          <div class="alert alert-danger" *ngIf="(GroupNumber.touched) && (GroupNumber.invalid)"-->
+<!--               style="margin-top: 5px;">-->
+<!--            <span *ngIf="GroupNumber.errors.required">Group Number is required</span>-->
+<!--          </div>-->
+<!--        </div>-->
+
         <div class="form-group">
-          <label for="groupNumber"><div style="color: red; float: left">*</div>Group Number</label>
-          <input type="text" class="form-control" formControlName="groupNumber"
-                 data-toggle="tooltip" data-placement="right" title="Enter Group Number">
-          <div class="alert alert-danger" *ngIf="(GroupNumber.touched) && (GroupNumber.invalid)"
+          <label for="groupId"><div style="color: red; float: left">*</div>Group Number</label>
+          <select class="form-control" formControlName="groupId" data-toggle="tooltip"
+                  data-placement="right" title="Select Group Number">
+            <option value="1">B17-101</option>
+            <option value="2">B18-101</option>
+            <option value="3">B17-201</option>
+            <option value="4">B18-201</option>
+            <option value="5">S17-302</option>
+            <option value="6">S18-302</option>
+            <option value="7">B17-502</option>
+            <option value="8">B18-502</option>
+            <option value="9">B17-402</option>
+            <option value="10">B18-402</option>
+            <option value="11">B18-403</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="(GroupId.touched) && (GroupId.invalid)"
                style="margin-top: 5px;">
-            <span *ngIf="GroupNumber.errors.required">Group Number is required</span>
+            <span *ngIf="GroupId.errors.required">Group Number is required</span>
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="faculty">Faculty</label>
-          <select class="form-control" formControlName="faculty" data-toggle="tooltip"
-                  data-placement="right" title="Select Faculty">
-            <option value="null">--Select Faculty--</option>
-            <option value="INPE">Institute of Nuclear Physics and Engineering</option>
-            <option value="IEPB">Institute of Engineering Physics for Biomedicine</option>
-            <option value="ILPT">Institute for Laser and Plasma Technologies</option>
-            <option value="ICIS">Institute of Cyber Intelligence Systems</option>
-            <option value="INESP">Institute for Nanoengineering in Electronics, Spintronics and Photonics</option>
-          </select>
-        </div>
+<!--        <div class="form-group">-->
+<!--          <label for="faculty">Faculty</label>-->
+<!--          <select class="form-control" formControlName="faculty" data-toggle="tooltip"-->
+<!--                  data-placement="right" title="Select Faculty">-->
+<!--            <option value="null">&#45;&#45;Select Faculty&#45;&#45;</option>-->
+<!--            <option value="INPE">Institute of Nuclear Physics and Engineering</option>-->
+<!--            <option value="IEPB">Institute of Engineering Physics for Biomedicine</option>-->
+<!--            <option value="ILPT">Institute for Laser and Plasma Technologies</option>-->
+<!--            <option value="ICIS">Institute of Cyber Intelligence Systems</option>-->
+<!--            <option value="INESP">Institute for Nanoengineering in Electronics, Spintronics and Photonics</option>-->
+<!--          </select>-->
+<!--        </div>-->
 
         <div class="form-group">
           <label for="scholarship">Scholarship</label>
           <select class="form-control" formControlName="scholarship" data-toggle="tooltip"
                   data-placement="right" title="Select Scholarship">
-            <option value="null">--Select Scholarship--</option>
             <option value="usual">Usual</option>
             <option value="increased">Increased</option>
           </select>
@@ -70,5 +91,3 @@
   </div>
   <div class="col-sm-4"></div>
 </div>
-
-
