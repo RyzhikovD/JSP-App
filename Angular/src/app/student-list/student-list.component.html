@@ -30,11 +30,9 @@
       <tbody>
       <tr *ngFor="let student of students">
         <td>{{student.studentName}}</td>
-        <td>{{groups[student.group.groupId - 1].groupNumber}}</td>
-        <td>{{student.group.groupNumber}}</td>
-        <td>{{student.group.groupId}}</td>
-<!--        <td>Hello</td>-->
-<!--        <td>{{student.scholarship}}</td>-->
+        <td>{{groups[student.groupId - 1].groupNumber}}</td>
+        <td>{{groups[student.groupId - 1].faculty}}</td>
+        <td>{{student.scholarship}}</td>
         <td>{{student.dateOfEnrollment}}</td>
         <td>
           <button (click)="deleteStudent(student.studentId)" class='btn btn-primary'><i
@@ -45,32 +43,6 @@
         </td>
       </tr>
       </tbody>
-      <br>
-    </table>
-
-    <table class="table table-hover table-sm" datatable [dtOptions]="dtOptions"
-           [dtTrigger]="dtTrigger">
-      <thead class="thead-light">
-      <tr>
-        <th>Student Name</th>
-        <th>Group Number</th>
-        <th>Action</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let group of groups">
-        <td>{{group.groupNumber}}</td>
-        <td>{{group.faculty}}</td>
-        <td>
-          <button (click)="deleteStudent(student.studentId)" class='btn btn-primary'><i
-            class="fa fa-futboll-0">Delete</i></button>&nbsp;
-          <button (click)="updateStudent(student.studentId)" class='btn btn-info'
-                  data-toggle="modal" data-target="#myModal">Update
-          </button>
-        </td>
-      </tr>
-      </tbody>
-      <br>
     </table>
   </div>
 </div>
@@ -97,18 +69,10 @@
               </div>
             </div>
 
-<!--            <div class="form-group">-->
-<!--              <label for="groupNumber">Group Number</label>-->
-<!--              <input type="text" class="form-control" formControlName="groupNumber"-->
-<!--                     [(ngModel)]="student.groupNumber">-->
-<!--              <div class="alert alert-danger" *ngIf="(GroupNumber.touched) && (GroupNumber.invalid)"-->
-<!--                   style="margin-top: 5px;">-->
-<!--                <span *ngIf="GroupNumber.errors.required">Group Number is required</span>-->
-<!--              </div>-->
-<!--            </div>-->
-
             <div class="form-group">
-              <label for="groupId"><div style="color: red; float: left">*</div>Group Number</label>
+              <label for="groupId">
+                <div style="color: red; float: left">*</div>
+                Group Number</label>
               <select class="form-control" formControlName="groupId" data-toggle="tooltip"
                       data-placement="right" title="Select Group Number">
                 <option value="1" [selected]="1 == student.groupId">B17-101</option>
@@ -123,28 +87,13 @@
                 <option value="10" [selected]="10 == student.groupId">B18-402</option>
                 <option value="11" [selected]="11 == student.groupId">B18-403</option>
               </select>
-              <div class="alert alert-danger" *ngIf="(GroupId.touched) && (GroupId.invalid)"
-                   style="margin-top: 5px;">
-                <span *ngIf="GroupId.errors.required">Group Number is required</span>
-              </div>
             </div>
-
-<!--            <div class="form-group">-->
-<!--              <label for="faculty">Faculty</label>-->
-<!--              <select class="form-control" formControlName="faculty" required>-->
-<!--                <option value="INPE" [selected]="'Institute of Nuclear Physics and Engineering' == student.faculty">INPE</option>-->
-<!--                <option value="IEPB" [selected]="'Institute of Engineering Physics for Biomedicine' == student.faculty">IEPB</option>-->
-<!--                <option value="ILPT" [selected]="'Institute for Laser and Plasma Technologies' == student.faculty">ILPT</option>-->
-<!--                <option value="ICIS" [selected]="'Institute of Cyber Intelligence Systems' == student.faculty">ICIS</option>-->
-<!--                <option value="INESP" [selected]="'Institute for Nanoengineering in Electronics, Spintronics and Photonics' == student.faculty">INESP</option>-->
-<!--              </select>-->
-<!--            </div>-->
 
             <div class="form-group">
               <label for="scholarship">Scholarship</label>
               <select class="form-control" formControlName="scholarship" required>
-                <option value="usual" [selected]="'usual' == student.faculty">Usual</option>
-                <option value="increased" [selected]="'increased' == student.faculty">Increased</option>
+                <option value="usual" [selected]="'usual' == student.scholarship">Usual</option>
+                <option value="increased" [selected]="'increased' == student.scholarship">Increased</option>
               </select>
             </div>
 
@@ -162,10 +111,10 @@
         <!-- Modal footer -->
         <div class="modal-footer">
           <button type="submit" class="btn btn-success" [hidden]="isUpdated"
-                  [disabled]="studentUpdateForm.pristine || studentUpdateForm.invalid">Update</button>
+                  [disabled]="studentUpdateForm.pristine || studentUpdateForm.invalid">Update
+          </button>
           <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="changeIsUpdate()">Close</button>
         </div>
-
       </form>
     </div>
   </div>

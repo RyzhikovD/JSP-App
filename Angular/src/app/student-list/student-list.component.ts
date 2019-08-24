@@ -21,14 +21,6 @@ export class StudentListComponent implements OnInit {
     return this.studentUpdateForm.get('studentName');
   }
 
-  // get GroupNumber() {
-  //   return this.studentUpdateForm.get('groupNumber');
-  // }
-
-  // get Faculty() {
-  //   return this.studentUpdateForm.get('faculty');
-  // }
-
   get Scholarship() {
     return this.studentUpdateForm.get('scholarship');
   }
@@ -41,16 +33,16 @@ export class StudentListComponent implements OnInit {
     return this.studentUpdateForm.get('studentId');
   }
 
-  studentsArray: any[] = [];
+  get GroupId() {
+    return this.studentUpdateForm.get('groupId');
+  }
+
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
-
 
   students: Observable<Student[]>;
   groups: Observable<Group[]>;
   student: Student = new Student();
-  // group: Group = new Group();
-  // groupMap: Map<number, Group> = new Map<number, Group>();
   deleteMessage = false;
   studentList: any;
   groupList: any;
@@ -60,12 +52,9 @@ export class StudentListComponent implements OnInit {
     studentId: new FormControl(),
     groupId: new FormControl(),
     studentName: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    // groupNumber: new FormControl('', [Validators.required]),
-    // faculty: new FormControl(),
     scholarship: new FormControl(),
     dateOfEnrollment: new FormControl()
   });
-
 
   ngOnInit() {
     this.isUpdated = false;
@@ -81,15 +70,7 @@ export class StudentListComponent implements OnInit {
     });
     this.groupService.getGroupList().subscribe(data => {
       this.groups = data;
-      this.dtTrigger.next();
     });
-    //
-    // const map = new Map();
-    // this.groups.forEach(function(value) {
-    //   map.set(value[0].groupId, value);
-    //   console.log(value);
-    // });
-    // this.groupMap = new Map(map);
   }
 
   getGroup(student: Student) {
@@ -100,42 +81,32 @@ export class StudentListComponent implements OnInit {
   }
 
   deleteStudent(id: number) {
-    this.studentService.deleteStudent(id)
-      .subscribe(
-        data => {
-          console.log(data);
-          this.deleteMessage = true;
-          this.studentService.getStudentList().subscribe(data => {
-            this.students = data;
-          });
-        },
-        error => console.log(error));
+    this.studentService.deleteStudent(id).subscribe(data => {
+        console.log(data);
+        this.deleteMessage = true;
+        this.studentService.getStudentList().subscribe(data => {
+          this.students = data;
+        });
+      },
+      error => console.log(error));
   }
 
-
   updateStudent(id: number) {
-    this.studentService.getStudent(id)
-      .subscribe(
-        data => {
-          this.studentList = data;
-        },
-        error => console.log(error));
+    this.studentService.getStudent(id).subscribe(data => {
+        this.studentList = data;
+      },
+      error => console.log(error));
   }
 
   updateStu(updStu) {
     this.student = new Student();
     this.student.studentId = this.StudentId.value;
     this.student.studentName = this.StudentName.value;
-    // this.student.groupId = this.GroupId.value;
-    // this.student.groupNumber = this.GroupNumber.value;
-    // this.student.faculty = this.Faculty.value;
+    this.student.groupId = this.GroupId.value;
     this.student.scholarship = this.Scholarship.value;
     this.student.dateOfEnrollment = this.DateOfEnrollment.value;
-    // console.log(this.Faculty.value);
 
-
-    this.studentService.updateStudent(this.student.studentId, this.student).subscribe(
-      data => {
+    this.studentService.updateStudent(this.student.studentId, this.student).subscribe(data => {
         this.isUpdated = true;
         this.studentService.getStudentList().subscribe(data => {
           this.students = data;

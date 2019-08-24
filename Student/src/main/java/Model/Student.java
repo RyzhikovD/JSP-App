@@ -1,6 +1,5 @@
 package Model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -13,19 +12,9 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int studentId;
 
-//    @JsonBackReference
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "groupId")
+    private int groupId;
 
-//    Works
-//    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="groupId")
-//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    @JoinColumn(name = "groupId")
-
-    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="groupId")
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "groupId")
-    private Group group;
-
-//    private int groupId;
     private String studentName;
     private String scholarship;
     private String dateOfEnrollment;
@@ -62,19 +51,11 @@ public class Student {
         this.dateOfEnrollment = dateOfEnrollment;
     }
 
-//    public int getGroupId() {
-//        return groupId;
-//    }
-//
-//    public void setGroupId(int groupId) {
-//        this.groupId = groupId;
-//    }
-
-    public Group getGroup() {
-        return group;
+    public int getGroupId() {
+        return groupId;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setGroupId(int groupId) {
+        this.groupId = groupId;
     }
 }

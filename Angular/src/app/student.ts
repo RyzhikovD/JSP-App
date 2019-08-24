@@ -1,10 +1,7 @@
-import {Group} from './group';
-
 export class Student {
   studentId: number;
   studentName: String;
-  group: Group;
-  // groupId: number;
+  groupId: number;
   scholarship = String;
   dateOfEnrollment: String;
 }

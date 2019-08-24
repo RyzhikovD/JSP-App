@@ -1,30 +1,3 @@
-/*SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";*/
-
-/*DROP TABLE IF EXISTS `grouptable`;
-DROP TABLE IF EXISTS `student`;
-
-CREATE TABLE IF NOT EXISTS `student` (
-  `studentId` int(11) NOT NULL AUTO_INCREMENT,
-  `groupId` int(11) NOT NULL,
-  `studentName` varchar(255) DEFAULT NULL,
-  `scholarship` varchar(255) DEFAULT NULL,
-  `dateOfEnrollment` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`studentId`),
-  FOREIGN KEY (`groupId`) REFERENCES `grouptable`(`groupId`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-COMMIT;
-
-CREATE TABLE IF NOT EXISTS `grouptable` (
-  `groupId` int(11) NOT NULL AUTO_INCREMENT,
-  `faculty` varchar(255) DEFAULT NULL,
-  `groupNumber` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`groupId`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-COMMIT;*/
-
 INSERT INTO `grouptable` (`groupId`, `faculty`, `groupNumber`) VALUES
 (1, 'INPE', 'B17-101'),
 (2, 'INPE', 'B18-101'),
