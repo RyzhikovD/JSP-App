@@ -1,32 +1,32 @@
 package Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "student")
-//@SecondaryTable(name="groups", pkJoinColumns = @PrimaryKeyJoinColumn(name="groupId"))
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "studentId")
     private int studentId;
-    private String studentName;
-//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Group.class)
-//    @JoinTable(name = "groups", joinColumns = { @JoinColumn(name = "groupId") }, inverseJoinColumns = { @JoinColumn(name = "groupId") })
 
-//    @JoinColumn(name="groupId",referencedColumnName="groupId", insertable=false, updatable=false)
-//    @Column(name="groupId", table="groups")
-//    private int groupId;
+//    @JsonBackReference
 
-//    @JoinColumn(name="groupId")
-//    @JoinTable(name = "connection", joinColumns = @JoinColumn(name = "groupId"), inverseJoinColumns = @JoinColumn(name = "studentId"))
-//    private int groupId;
-
-//    @ManyToOne()
+//    Works
+//    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="groupId")
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    @JoinColumn(name = "groupId")
-//    private Group group;
-    private int groupId;
 
+    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="groupId")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "groupId")
+    private Group group;
+
+//    private int groupId;
+    private String studentName;
     private String scholarship;
     private String dateOfEnrollment;
 
@@ -46,22 +46,6 @@ public class Student {
         this.studentName = studentName;
     }
 
-//    public String getGroupNumber() {
-//        return groupId.getGroupNumber();
-//    }
-//
-//    public void setGroupNumber(String groupNumber) {
-//        this.groupId.setGroupNumber(groupNumber);
-//    }
-
-//    public String getFaculty() {
-//        return groupId.getFaculty();
-//    }
-//
-//    public void setFaculty(String faculty) {
-//        this.groupId.setFaculty(faculty);
-//    }
-
     public String getScholarship() {
         return scholarship;
     }
@@ -78,11 +62,19 @@ public class Student {
         this.dateOfEnrollment = dateOfEnrollment;
     }
 
-    public int getGroupId() {
-        return groupId;
+//    public int getGroupId() {
+//        return groupId;
+//    }
+//
+//    public void setGroupId(int groupId) {
+//        this.groupId = groupId;
+//    }
+
+    public Group getGroup() {
+        return group;
     }
 
-    public void setGroupId(int groupId) {
-        this.groupId = groupId;
+    public void setGroup(Group group) {
+        this.group = group;
     }
 }

@@ -24,6 +24,7 @@ public class Controller {
 
     @Autowired
     private StudentService studentService;
+    @Autowired
     private GroupService groupService;
 
     @PostMapping("save-student")
@@ -36,10 +37,10 @@ public class Controller {
         return studentService.getStudents();
     }
 
-//    @GetMapping("group-list")
-//    public List<Group> allGroups() {
-//        return groupService.getGroups();
-//    }
+    @GetMapping("group-list")
+    public List<Group> allGroups() {
+        return groupService.getGroups();
+    }
 
     @DeleteMapping("delete-student/{studentId}")
     public boolean deleteStudent(@PathVariable("studentId") int studentId, Student student) {
@@ -53,11 +54,11 @@ public class Controller {
         return studentService.getStudentByID(student);
     }
 
-//    @GetMapping("group/{groupId}")
-//    public List<Group> allGroupsByID(@PathVariable("groupId") int groupId, Group group) {
-//        group.setGroupId(groupId);
-//        return groupService.getGroupByID(group);
-//    }
+    @GetMapping("group/{groupId}")
+    public List<Group> allGroupsByID(@PathVariable("groupId") int groupId, Group group) {
+        group.setGroupId(groupId);
+        return groupService.getGroupByID(group);
+    }
 
     @PostMapping("update-student/{studentId}")
     public boolean updateStudent(@RequestBody Student student, @PathVariable("studentId") int studentId) {

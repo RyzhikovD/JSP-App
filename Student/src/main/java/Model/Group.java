@@ -1,7 +1,14 @@
 package Model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Fetch;
+
 import javax.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -9,21 +16,21 @@ import java.util.Set;
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "groupId")
     private int groupId;
-//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Group.class)
-//    @JoinTable(name = "students", joinColumns = { @JoinColumn(name = "groupId") }, inverseJoinColumns = { @JoinColumn(name = "groupId") })
 
-//    @OneToOne(optional=false)
-//    @JoinColumn(name="groupId",referencedColumnName="groupId", insertable=false, updatable=false)
+//    @JsonManagedReference
 
-//    @Column(name="groupId", table="students")
+//    Works
+//    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="studentId")
+//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 
-//    @JoinTable(name = "connection", joinColumns = @JoinColumn(name = "groupId"), inverseJoinColumns = @JoinColumn(name = "studentId"))
-//    private Set<Student> students;
+//    @OneToMany(mappedBy = "group", fetch = FetchType.EAGER)
 
-//    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
-//    private Set<Student> students;
+//    @Cascade({CascadeType.SAVE_UPDATE})
+
+//    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="studentId")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "group", orphanRemoval = true)
+    private Set<Student> students;
 
     private String groupNumber;
     private String faculty;
@@ -50,5 +57,13 @@ public class Group {
 
     public void setFaculty(String faculty) {
         this.faculty = faculty;
+    }
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
     }
 }

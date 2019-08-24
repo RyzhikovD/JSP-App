@@ -41,22 +41,19 @@ export class StudentListComponent implements OnInit {
     return this.studentUpdateForm.get('studentId');
   }
 
-  get GroupId() {
-    return this.studentUpdateForm.get('groupId');
-  }
-
   studentsArray: any[] = [];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
 
   students: Observable<Student[]>;
-  // groups: Observable<Group[]>;
+  groups: Observable<Group[]>;
   student: Student = new Student();
   // group: Group = new Group();
   // groupMap: Map<number, Group> = new Map<number, Group>();
   deleteMessage = false;
   studentList: any;
+  groupList: any;
   isUpdated = false;
 
   studentUpdateForm = new FormGroup({
@@ -82,10 +79,10 @@ export class StudentListComponent implements OnInit {
       this.students = data;
       this.dtTrigger.next();
     });
-    // this.groupService.getGroupList().subscribe(data => {
-    //   this.groups = data;
-    //   this.dtTrigger.next();
-    // });
+    this.groupService.getGroupList().subscribe(data => {
+      this.groups = data;
+      this.dtTrigger.next();
+    });
     //
     // const map = new Map();
     // this.groups.forEach(function(value) {
@@ -93,6 +90,13 @@ export class StudentListComponent implements OnInit {
     //   console.log(value);
     // });
     // this.groupMap = new Map(map);
+  }
+
+  getGroup(student: Student) {
+    this.groupService.getGroup(student.studentId).subscribe(data => {
+      this.groupList = data;
+    });
+    return this.groupList.groupNumber;
   }
 
   deleteStudent(id: number) {
@@ -122,7 +126,7 @@ export class StudentListComponent implements OnInit {
     this.student = new Student();
     this.student.studentId = this.StudentId.value;
     this.student.studentName = this.StudentName.value;
-    this.student.groupId = this.GroupId.value;
+    // this.student.groupId = this.GroupId.value;
     // this.student.groupNumber = this.GroupNumber.value;
     // this.student.faculty = this.Faculty.value;
     this.student.scholarship = this.Scholarship.value;

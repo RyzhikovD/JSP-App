@@ -1,9 +1,9 @@
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+/*SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
-SET time_zone = "+00:00";
+SET time_zone = "+00:00";*/
 
-DROP TABLE IF EXISTS `grouptable`;
+/*DROP TABLE IF EXISTS `grouptable`;
 DROP TABLE IF EXISTS `student`;
 
 CREATE TABLE IF NOT EXISTS `student` (
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `grouptable` (
   `groupNumber` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`groupId`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-COMMIT;
+COMMIT;*/
 
 INSERT INTO `grouptable` (`groupId`, `faculty`, `groupNumber`) VALUES
 (1, 'INPE', 'B17-101'),
