@@ -13,7 +13,7 @@ INSERT INTO `grouptable` (`groupId`, `faculty`, `groupNumber`) VALUES
 COMMIT;
 
 INSERT INTO `student` (`studentId`, `groupId`, `studentName`, `scholarship`, `dateOfEnrollment`) VALUES
-(1, 1, 'Alex', 'usual', '01.09.2016'),
-(2, 2, 'Dolly', 'usual', '01.09.2016'),
-(3, 3, 'Rick', 'increased', '01.09.2017');
+(1, 1, 'Alex', 'usual', 'Fri Sep 01 2017'),
+(2, 2, 'Dolly', 'usual', 'Sat Sep 01 2018'),
+(3, 3, 'Rick', 'increased', 'Fri Sep 01 2017');
 COMMIT;

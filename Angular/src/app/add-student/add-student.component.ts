@@ -39,6 +39,12 @@ export class AddStudentComponent implements OnInit {
     dateOfEnrollment: new FormControl(),
   });
 
+  static FormatDate(date) {
+    const dateArray = date.split('/');
+    const dateOut = new Date(dateArray[2], dateArray[1] - 1, dateArray[0]);
+    return  dateOut.toDateString();
+  }
+
   ngOnInit() {
     this.submitted = false;
   }
@@ -48,7 +54,7 @@ export class AddStudentComponent implements OnInit {
     this.student.studentName = this.StudentName.value;
     this.student.groupId = this.Group.value;
     this.student.scholarship = this.Scholarship.value;
-    this.student.dateOfEnrollment = this.DateOfEnrollment.value;
+    this.student.dateOfEnrollment = AddStudentComponent.FormatDate(this.DateOfEnrollment.value);
     this.submitted = true;
     this.save();
   }
