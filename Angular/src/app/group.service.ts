@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -13,10 +13,12 @@ export class GroupService {
   constructor(private http: HttpClient) {}
 
   getGroup(id: number): Observable<Object> {
-    return this.http.get(`${this.baseUrl}/group/${id}`);
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa('root:root') });
+    return this.http.get(`${this.baseUrl}/group/${id}`, {headers});
   }
 
   getGroupList(): Observable<any> {
-    return this.http.get(`${this.baseUrl}` + 'group-list');
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa('root:root') });
+    return this.http.get(`${this.baseUrl}` + 'group-list', {headers});
   }
 }

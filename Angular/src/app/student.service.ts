@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -13,7 +13,8 @@ export class StudentService {
   constructor(private http: HttpClient) {}
 
   getStudentList(): Observable<any> {
-    return this.http.get(`${this.baseUrl}` + 'students-list');
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa('root:root') });
+    return this.http.get(`${this.baseUrl}` + 'students-list', {headers});
   }
 
   createStudent(student: object): Observable<object> {
